@@ -1,47 +1,61 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import Filmsliste from './Filmsliste';
 import { Container } from 'react-bootstrap';
 import Card from './Card';
-import Alerte from './Alerte';
-import Active from './Active';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import FilmDetails from './FilmDetails'; // Assurez-vous d'importer FilmDetails
+
 
 export default function App() {
-  const [films, setFilms] = useState([
-    {titre:'French Montana ',posterURL:"https://youtu.be/8CKuWPRq2Ps?list=PL_dH0vFHwpN4qZ5uSy8NI79CTtF3hhq12",image:"https://scontent.ftun15-1.fna.fbcdn.net/v/t39.30808-6/362683888_246331284917247_2296429216278077612_n.jpg?stp=cp6_dst-jpg&_nc_cat=102&ccb=1-7&_nc_sid=5614bc&_nc_ohc=lAsYHhy_cRQAX9MQCCN&_nc_oc=AQk8KOxzZwzCFrPi8g9iYuCJRbsRA4FIugdqvPY05Ldl0GAb6cSwFnUlsDX7v9mpnO8&_nc_ht=scontent.ftun15-1.fna&oh=00_AfA7BPJ5swMSEdqD6HUlBUZ8iArbg2qj7QYGo_j5jTG4bg&oe=64F54D69",description:"",Rating:3},
-    {titre:'Samara Official  ',posterURL:"https://youtu.be/3RuHe_eWOt0",description:"",image:"https://scontent.ftun15-1.fna.fbcdn.net/v/t39.30808-6/362683888_246331284917247_2296429216278077612_n.jpg?stp=cp6_dst-jpg&_nc_cat=102&ccb=1-7&_nc_sid=5614bc&_nc_ohc=lAsYHhy_cRQAX9MQCCN&_nc_oc=AQk8KOxzZwzCFrPi8g9iYuCJRbsRA4FIugdqvPY05Ldl0GAb6cSwFnUlsDX7v9mpnO8&_nc_ht=scontent.ftun15-1.fna&oh=00_AfA7BPJ5swMSEdqD6HUlBUZ8iArbg2qj7QYGo_j5jTG4bg&oe=64F54D69",Rating:2},
-    {titre:'Tiakola - Meuda ',posterURL:"https://youtu.be/axJQz2hx4sY",description:"",image:"https://scontent.ftun15-1.fna.fbcdn.net/v/t39.30808-6/362683888_246331284917247_2296429216278077612_n.jpg?stp=cp6_dst-jpg&_nc_cat=102&ccb=1-7&_nc_sid=5614bc&_nc_ohc=lAsYHhy_cRQAX9MQCCN&_nc_oc=AQk8KOxzZwzCFrPi8g9iYuCJRbsRA4FIugdqvPY05Ldl0GAb6cSwFnUlsDX7v9mpnO8&_nc_ht=scontent.ftun15-1.fna&oh=00_AfA7BPJ5swMSEdqD6HUlBUZ8iArbg2qj7QYGo_j5jTG4bg&oe=64F54D69",Rating:1},
-    {titre:'Soolking ft. Gazo ',posterURL:"https://youtu.be/6WrVXWgn094",image:"https://scontent.ftun15-1.fna.fbcdn.net/v/t39.30808-6/362683888_246331284917247_2296429216278077612_n.jpg?stp=cp6_dst-jpg&_nc_cat=102&ccb=1-7&_nc_sid=5614bc&_nc_ohc=lAsYHhy_cRQAX9MQCCN&_nc_oc=AQk8KOxzZwzCFrPi8g9iYuCJRbsRA4FIugdqvPY05Ldl0GAb6cSwFnUlsDX7v9mpnO8&_nc_ht=scontent.ftun15-1.fna&oh=00_AfA7BPJ5swMSEdqD6HUlBUZ8iArbg2qj7QYGo_j5jTG4bg&oe=64F54D69",description:"",Rating:5},
-    {titre:"DJ Khaled ",posterURL:"https://youtu.be/weeI1G46q0o",image:"https://scontent.ftun15-1.fna.fbcdn.net/v/t39.30808-6/362683888_246331284917247_2296429216278077612_n.jpg?stp=cp6_dst-jpg&_nc_cat=102&ccb=1-7&_nc_sid=5614bc&_nc_ohc=lAsYHhy_cRQAX9MQCCN&_nc_oc=AQk8KOxzZwzCFrPi8g9iYuCJRbsRA4FIugdqvPY05Ldl0GAb6cSwFnUlsDX7v9mpnO8&_nc_ht=scontent.ftun15-1.fna&oh=00_AfA7BPJ5swMSEdqD6HUlBUZ8iArbg2qj7QYGo_j5jTG4bg&oe=64F54D69",description:"",Rating:3},
-    {titre:"Didi B . Miedjia ",posterURL:"https://youtu.be/MbnE3WrOw54",image:"https://scontent.ftun15-1.fna.fbcdn.net/v/t39.30808-6/362683888_246331284917247_2296429216278077612_n.jpg?stp=cp6_dst-jpg&_nc_cat=102&ccb=1-7&_nc_sid=5614bc&_nc_ohc=lAsYHhy_cRQAX9MQCCN&_nc_oc=AQk8KOxzZwzCFrPi8g9iYuCJRbsRA4FIugdqvPY05Ldl0GAb6cSwFnUlsDX7v9mpnO8&_nc_ht=scontent.ftun15-1.fna&oh=00_AfA7BPJ5swMSEdqD6HUlBUZ8iArbg2qj7QYGo_j5jTG4bg&oe=64F54D69",description:"",Rating:2} ,
-    {titre:'DYSTINCT ft. Naza ',posterURL:"https://youtu.be/Z8_ybWzumGQ",image:"https://scontent.ftun15-1.fna.fbcdn.net/v/t39.30808-6/362683888_246331284917247_2296429216278077612_n.jpg?stp=cp6_dst-jpg&_nc_cat=102&ccb=1-7&_nc_sid=5614bc&_nc_ohc=lAsYHhy_cRQAX9MQCCN&_nc_oc=AQk8KOxzZwzCFrPi8g9iYuCJRbsRA4FIugdqvPY05Ldl0GAb6cSwFnUlsDX7v9mpnO8&_nc_ht=scontent.ftun15-1.fna&oh=00_AfA7BPJ5swMSEdqD6HUlBUZ8iArbg2qj7QYGo_j5jTG4bg&oe=64F54D69",description:"",Rating:3},
-    {titre:'Doupi Papillon   ',posterURL:"https://youtu.be/8dguvuJoJ1Q",image:"https://scontent.ftun15-1.fna.fbcdn.net/v/t39.30808-6/362683888_246331284917247_2296429216278077612_n.jpg?stp=cp6_dst-jpg&_nc_cat=102&ccb=1-7&_nc_sid=5614bc&_nc_ohc=lAsYHhy_cRQAX9MQCCN&_nc_oc=AQk8KOxzZwzCFrPi8g9iYuCJRbsRA4FIugdqvPY05Ldl0GAb6cSwFnUlsDX7v9mpnO8&_nc_ht=scontent.ftun15-1.fna&oh=00_AfA7BPJ5swMSEdqD6HUlBUZ8iArbg2qj7QYGo_j5jTG4bg&oe=64F54D69",description:"",Rating:2},
-    {titre:'Davido -UNAVAIL',posterURL:"https://youtu.be/OSBan_sH_b8",image:"https://scontent.ftun15-1.fna.fbcdn.net/v/t39.30808-6/362683888_246331284917247_2296429216278077612_n.jpg?stp=cp6_dst-jpg&_nc_cat=102&ccb=1-7&_nc_sid=5614bc&_nc_ohc=lAsYHhy_cRQAX9MQCCN&_nc_oc=AQk8KOxzZwzCFrPi8g9iYuCJRbsRA4FIugdqvPY05Ldl0GAb6cSwFnUlsDX7v9mpnO8&_nc_ht=scontent.ftun15-1.fna&oh=00_AfA7BPJ5swMSEdqD6HUlBUZ8iArbg2qj7QYGo_j5jTG4bg&oe=64F54D69",description:"",Rating:1},
-    {titre:'Imam Soudais',posterURL:"https://youtu.be/ST45wavjDkw",image:"https://scontent.ftun15-1.fna.fbcdn.net/v/t39.30808-6/362683888_246331284917247_2296429216278077612_n.jpg?stp=cp6_dst-jpg&_nc_cat=102&ccb=1-7&_nc_sid=5614bc&_nc_ohc=lAsYHhy_cRQAX9MQCCN&_nc_oc=AQk8KOxzZwzCFrPi8g9iYuCJRbsRA4FIugdqvPY05Ldl0GAb6cSwFnUlsDX7v9mpnO8&_nc_ht=scontent.ftun15-1.fna&oh=00_AfA7BPJ5swMSEdqD6HUlBUZ8iArbg2qj7QYGo_j5jTG4bg&oe=64F54D69",description:"",Rating:3},
-    {titre:'Douah Médine ',posterURL:"https://youtu.be/N9QSL1PLUS4",image:"https://scontent.ftun15-1.fna.fbcdn.net/v/t39.30808-6/362683888_246331284917247_2296429216278077612_n.jpg?stp=cp6_dst-jpg&_nc_cat=102&ccb=1-7&_nc_sid=5614bc&_nc_ohc=lAsYHhy_cRQAX9MQCCN&_nc_oc=AQk8KOxzZwzCFrPi8g9iYuCJRbsRA4FIugdqvPY05Ldl0GAb6cSwFnUlsDX7v9mpnO8&_nc_ht=scontent.ftun15-1.fna&oh=00_AfA7BPJ5swMSEdqD6HUlBUZ8iArbg2qj7QYGo_j5jTG4bg&oe=64F54D69",description:"",Rating:2},
-    {titre:'15 APIs INCROYABLES ',posterURL:"https://youtu.be/4yfxEMm_SKo",image:"https://scontent.ftun15-1.fna.fbcdn.net/v/t39.30808-6/362683888_246331284917247_2296429216278077612_n.jpg?stp=cp6_dst-jpg&_nc_cat=102&ccb=1-7&_nc_sid=5614bc&_nc_ohc=lAsYHhy_cRQAX9MQCCN&_nc_oc=AQk8KOxzZwzCFrPi8g9iYuCJRbsRA4FIugdqvPY05Ldl0GAb6cSwFnUlsDX7v9mpnO8&_nc_ht=scontent.ftun15-1.fna&oh=00_AfA7BPJ5swMSEdqD6HUlBUZ8iArbg2qj7QYGo_j5jTG4bg&oe=64F54D69",description:"",Rating:1}
+  
+  const [films, setFilms] = useState([  
+    { id: '1', titre: 'Film 1', posterURL: "/vid/vi1.mp4", description: "Un groupe d'astronautes découvre un artefact extraterrestre mystérieux sur la Lune, déclenchant une mission périlleuse vers Jupiter dans 2001: L'Odyssée de l'espace.", Rating: 3 },
+    { id: '2', titre: 'Film 2', posterURL: "/vid/vi1.mp4", description: "Bonjour 2", Rating: 2 },
+    { id: '3', titre: 'Film 3', posterURL: "/vid/vi1.mp4", description: "Bonjour 3", Rating: 1 },
+    { id: '4', titre:  'Film 4', posterURL: "/vid/vi1.mp4", description: "Bonjour 4", Rating: 5 },
+    { id: "5", titre: "Film 5 ",posterURL: "/vid/vi1.mp4", description: "Bonjour 5", Rating: 3 },
+    { id: "6", titre: "Film 6",posterURL: "/vid/vi1.mp4", description: "Bonjour 6", Rating: 2 },
+    { id: '7', titre: 'Film 7', posterURL: "/vid/vi1.mp4", description: "Bonjour 7", Rating: 3 },
+    { id: '8', titre: 'Film 8', posterURL: "/vid/vi1.mp4", description: "Bonjour 8", Rating: 2 },
+    { id: '9', titre: 'Film 9', posterURL: "/vid/vi1.mp4", description: "Bonjour 9", Rating: 1 },
+    { id: '10', titre: 'Film 10', posterURL: "/vid/vi1.mp4", description: "Bonjour 10", Rating: 3 },
+    { id: '11', titre: 'Film 11', posterURL: "/vid/vi1.mp4", description: "Bonjour 11", Rating: 2 },
+    { id: '12', titre: 'Film 12',posterURL: "/vid/vi1.mp4", description: "Bonjour 12", Rating: 1 }
   ]);
 
-  const maFonctionDeFiltrage = (filtres) => {
-        const { titre, note } = filtres;
-      
-        const filmsFiltres = films.filter(el => {
-          const titreMatch = el.titre.toUpperCase().includes(titre.toUpperCase());
-          const noteMatch = el.note >= note || !note;
-          return titreMatch && noteMatch;
-        });
-      
-        setFilms(filmsFiltres);
-      };
-      
+  const [filteredFilms, setFilteredFilms] = useState(films);
+  const maFonctionDeFiltrage = (filtres, idFilm) => {
+    const { titre, note } = filtres;
+  
+    const filmsFiltres = films.filter(el => {
+      const titreMatch = titre ? el.titre.toUpperCase().includes(titre.toUpperCase()) : true;
+      const noteMatch = (typeof note !== 'undefined') ? el.Rating >= note : true;
+      return titreMatch && noteMatch;
+    });
+  
+    setFilteredFilms(filmsFiltres);
+  
+    if (idFilm) {
+      const filmTrouve = films.find(film => film.id.toString() === idFilm);
+      if (filmTrouve) {
+        setFilteredFilms([filmTrouve]);
+      } else {
+        setFilteredFilms([]);
+      }
+    }
+  };
+  
 
+  
   return (
-    <Container>
-    <Card  onFilter={maFonctionDeFiltrage}/>
-    <Alerte/>
-    <Active/>
-      <Filmsliste films={films} />
-
-    </Container>
-      
+    <Router>
+      <Container>
+        <Card onFilter={maFonctionDeFiltrage} />
+        <Routes>
+          <Route path="/" element={<Filmsliste films={filteredFilms} />} />
+          <Route path="/film/:id" element={<FilmDetails films={filteredFilms} maFonctionDeFiltrage={maFonctionDeFiltrage} />} />
+        </Routes>
+      </Container>
+    </Router>
   );
 }

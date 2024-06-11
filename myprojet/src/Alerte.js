@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 
 export default function Alerte() {
@@ -34,19 +33,19 @@ export default function Alerte() {
   const closeButtonStyle = {
     position: 'absolute',
     top: '0', 
-    right: '-1px',
+    right: '0px',
     width: '15%',
     fontSize: '40px',
-    color:'red',
-    borderTopRightRadius: '50px',
-    background:'white',
+    color:'white',
+    borderTopRightRadius: '',
+    background:' green',
     cursor: 'pointer',
   };
 
   const image = {
     width: '400px',
     height: '350px',
-    borderTopRightRadius: '50px',
+    borderTopRightRadius: '',
 
   };
 
@@ -59,9 +58,10 @@ export default function Alerte() {
         </span>
         <img
           style={image}
-          src="https://scontent.ftun15-1.fna.fbcdn.net/v/t39.30808-6/362683888_246331284917247_2296429216278077612_n.jpg?stp=cp6_dst-jpg&_nc_cat=102&ccb=1-7&_nc_sid=5614bc&_nc_ohc=O9w68dSAsnMAX9bWKoj&_nc_oc=AQkC8jO6WIYKMpKIq3gn1ntxw98PgndxVQNH5DMUBcH1Ngkd1N44TYb5sujGYKapjTM&_nc_ht=scontent.ftun15-1.fna&oh=00_AfCbVgJEz-dBieWwIzDLqibiaYoUti542ux0jeT_xvyieA&oe=64F747A9"
+          src="https://catalogue.automobile.tn/big/2023/05/46945.png?t=1689633533"
           alt="Votre Image"
         />
+        <h2  >Cette voiture est en promotion <span style={{color:'green'}}>20 000 DT</span></h2>
       </div>
       
     </div>

@@ -1,18 +1,17 @@
-
 import React from 'react';
 import Cardfilms from './Cardfilms';
 
 export default function Filmsliste({ films }) {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns:'repeat(4, 1fr)', gridGap:"15px",paddingLeft:"20%"}}>
-      {films.map((film, index) => ( 
-        <Cardfilms 
-          key={index}
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gridGap: "15px" }}>
+      {films.map((film) => (
+        <Cardfilms
+          key={film.id}
+          id={film.id}
           titre={film.titre}
-          image={film.image}
           description={film.description}
           posterURL={film.posterURL}
-          note={film.note}
+          note={film.Rating}
         />
       ))}
     </div>
