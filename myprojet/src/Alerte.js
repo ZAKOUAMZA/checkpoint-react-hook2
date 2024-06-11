@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+{/*import React, { useState } from 'react';
 
 export default function Alerte() {
   const [isOpen, setIsOpen] = useState(true);
@@ -20,7 +20,6 @@ export default function Alerte() {
   const contentStyle = {
     border:"none",
     background:"white",
-   /* boxShadow:"2px -2px 11px 10px #f5f5f5",*/
     position: 'absolute',
     top: '50%',
     left: '50%',
@@ -68,3 +67,4 @@ export default function Alerte() {
 
   );
 }
+*/}

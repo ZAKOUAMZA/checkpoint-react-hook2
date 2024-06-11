@@ -3,11 +3,11 @@ import Filmsliste from './Filmsliste';
 import { Container } from 'react-bootstrap';
 import Card from './Card';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import FilmDetails from './FilmDetails'; // Assurez-vous d'importer FilmDetails
+import FilmDetails from './FilmDetails'; 
 
 
 export default function App() {
-  
+// ceci est un exemple   
   const [films, setFilms] = useState([  
     { id: '1', titre: 'Film 1', posterURL: "/vid/vi1.mp4", description: "Un groupe d'astronautes découvre un artefact extraterrestre mystérieux sur la Lune, déclenchant une mission périlleuse vers Jupiter dans 2001: L'Odyssée de l'espace.", Rating: 3 },
     { id: '2', titre: 'Film 2', posterURL: "/vid/vi1.mp4", description: "Bonjour 2", Rating: 2 },
